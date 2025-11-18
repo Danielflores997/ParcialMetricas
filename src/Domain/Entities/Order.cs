@@ -11,12 +11,15 @@ namespace Domain.Entities
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
 
+        public decimal CalculateTotal()
+        {
+            return Quantity * UnitPrice;
+        }
+
         public void CalculateTotalAndLog()
         {
-            var total = Quantity * UnitPrice;
-            Infrastructure.Logging.Logger.Log("Total (maybe): " + total);
+            var total = CalculateTotal();
+            Infrastructure.Logging.Logger.Log($"Total (maybe): {total}");
         }
     };
 }
-
-
