@@ -22,8 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-BadDb.ConnectionString = app.Configuration["ConnectionStrings:Sql"]
-    ?? "Server=localhost;Database=master;User Id=sa;Password=SuperSecret123!;TrustServerCertificate=True";
+BadDb.ConnectionString = app.Configuration.GetConnectionString("Sql");
 
 app.UseCors("bad");
 

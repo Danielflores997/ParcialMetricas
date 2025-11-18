@@ -1,4 +1,5 @@
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Data;
 
@@ -6,8 +7,11 @@ namespace Infrastructure.Data;
 
 public static class BadDb
 {
-    public static string ConnectionString = "Server=localhost;Database=master;User Id=sa;Password=SuperSecret123!;TrustServerCertificate=True";
+    private static readonly IConfiguration configuration;
 
+    public static string ConnectionString = configuration.GetConnectionString("Sql");
+
+    //public static string ConnectionString = "Server=localhost;Database=master;User Id=sa;Password=SuperSecret123!;TrustServerCertificate=True";
 
     public static int ExecuteNonQueryUnsafe(string sql)
     {
