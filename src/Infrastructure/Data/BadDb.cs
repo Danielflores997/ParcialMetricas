@@ -11,7 +11,15 @@ public static class BadDb
 
     public static void Initialize(IConfiguration configuration)
     {
-        ConnectionString = configuration.GetConnectionString("Sql");
+        var connectionString = configuration.GetConnectionString("Sql");
+        var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
+
+        if (string.IsNullOrEmpty(dbPassword))
+        {
+            throw new Exception("The database password is not set in the environment variable 'DB_PASSWORD'.");
+        }
+
+        ConnectionString = connectionString.Replace("{DB_PASSWORD}", dbPassword);
     }
 
     public static int ExecuteNonQueryUnsafe(string sql)
