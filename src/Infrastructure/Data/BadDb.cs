@@ -7,11 +7,12 @@ namespace Infrastructure.Data;
 
 public static class BadDb
 {
-    private static readonly IConfiguration configuration;
+    public static string ConnectionString { get; private set; }
 
-    public static string ConnectionString = configuration.GetConnectionString("Sql");
-
-    //public static string ConnectionString = "Server=localhost;Database=master;User Id=sa;Password=SuperSecret123!;TrustServerCertificate=True";
+    public static void Initialize(IConfiguration configuration)
+    {
+        ConnectionString = configuration.GetConnectionString("Sql");
+    }
 
     public static int ExecuteNonQueryUnsafe(string sql)
     {

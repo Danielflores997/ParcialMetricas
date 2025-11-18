@@ -22,7 +22,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-BadDb.ConnectionString = app.Configuration.GetConnectionString("Sql");
+var buider = WebApplication.CreateBuilder(args);
+BadDb.Initialize(buider.Configuration);
 
 app.UseCors("bad");
 
