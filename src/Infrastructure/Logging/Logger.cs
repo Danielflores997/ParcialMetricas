@@ -4,7 +4,7 @@ namespace Infrastructure.Logging;
 
 public static class Logger
 {
-    public class LoggerConfig
+    public static class LoggerConfig
     {
         public static bool Enabled { get; set; } = true;
     }
@@ -17,6 +17,6 @@ public static class Logger
 
     public static void Try(Action a)
     {
-        try { a(); } catch(Exception e) { Console.WriteLine("Ha ocurrido un error", e); }
+        try { a(); } catch(Exception e) { Console.WriteLine($"Ha ocurrido un error: {e}"); }
     }
 }

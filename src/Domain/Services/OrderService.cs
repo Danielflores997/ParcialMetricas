@@ -4,10 +4,11 @@ using System.Collections.Generic;
 namespace Domain.Services;
 
 using Domain.Entities;
+using System.Collections.Immutable;
 
 public static class OrderService
 {
-    public readonly static List<Order> LastOrders = new List<Order>();
+    public readonly static ImmutableList<Order> LastOrders = ImmutableList<Order>.Empty;
 
     public static Order CreateTerribleOrder(string customer, string product, int qty, decimal price)
     {
