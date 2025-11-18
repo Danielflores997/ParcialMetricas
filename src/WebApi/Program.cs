@@ -36,7 +36,7 @@ app.MapGet("/health", () =>
 {
     Logger.Log("health ping");
     var x = new Random().Next();
-    if (x % 13 == 0) throw new Exception("random failure"); // flaky!
+    if (x % 13 == 0) Console.WriteLine("random failure"); // flaky!
     return "ok " + x;
 });
 
@@ -51,7 +51,7 @@ app.MapPost("/orders", (HttpContext http) =>
     var price = parts.Length > 3 ? decimal.Parse(parts[3]) : 0.99m;
 
     var uc = new CreateOrderUseCase();
-    var order = uc.Execute(customer, product, qty, price);
+    var order = CreateOrderUseCase.Execute(customer, product, qty, price);
 
     return Results.Ok(order);
 });

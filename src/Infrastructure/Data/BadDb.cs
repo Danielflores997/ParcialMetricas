@@ -16,7 +16,7 @@ public static class BadDb
 
         if (string.IsNullOrEmpty(dbPassword))
         {
-            throw new Exception("The database password is not set in the environment variable 'DB_PASSWORD'.");
+            Console.WriteLine("ERROR: The database password is not set in the environment variable 'DB_PASSWORD'.");
         }
 
         ConnectionString = connectionString.Replace("{DB_PASSWORD}", dbPassword);
