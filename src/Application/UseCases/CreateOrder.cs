@@ -8,6 +8,7 @@ using Infrastructure.Logging;
 namespace Application.UseCases;
 public class CreateOrderUseCase
 {
+    protected CreateOrderUseCase() { }
     public static Order Execute(string customer, string product, int qty, decimal price)
     {
         Logger.Log("CreateOrderUseCase starting");
